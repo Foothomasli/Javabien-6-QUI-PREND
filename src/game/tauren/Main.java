@@ -143,7 +143,7 @@ public class Main extends Application {
         }).start();
     }
 
-    //绘制游戏内容
+    //绘制游戏内容 Dessiner le contenu du jeu
     private void draw() {
         GraphicsContext graphicsContext2D = canvas.getGraphicsContext2D();
 
@@ -151,27 +151,29 @@ public class Main extends Application {
         if(!isStartGame){
             //绘制说明
             graphicsContext2D.drawImage(GameContent.INTRODUCTION_IMAGE,0,0,WIDTH,HEIGHT);
-            //绘制开始游戏按钮
+
+            //绘制开始游戏按钮 Dessinez le bouton de démarrage du jeu
             drawRect(graphicsContext2D,(WIDTH-START_GAME_BUTTON_WIDTH)/2,(HEIGHT-START_GAME_BUTTON_HEIGHT)/2,"",Color.WHITESMOKE,START_GAME_BUTTON_WIDTH,START_GAME_BUTTON_HEIGHT);
             graphicsContext2D.setFont(Font.font(20));
             graphicsContext2D.setFill(Color.BLACK);
             graphicsContext2D.fillText("Start Game",(WIDTH-START_GAME_BUTTON_WIDTH)/2+50,(HEIGHT-START_GAME_BUTTON_HEIGHT)/2+32);
         }else{
-            //绘制背景
+
+            //绘制背景 Dessiner l'arrière-plan
             graphicsContext2D.drawImage(GameContent.BACKGROUND_IMAGE,0,0,WIDTH,HEIGHT);
 
-            //绘制显示边框
+            //绘制显示边框 Dessiner la bordure d'affichage
             graphicsContext2D.setStroke(Color.BLACK);
             graphicsContext2D.setLineWidth(1);
             graphicsContext2D.strokeRect(0,0,WIDTH-PROMPT_WIDTH,HEIGHT);
 
-            //绘制剩余牌数
+            //绘制剩余牌数 Piochez les cartes restantes
             graphicsContext2D.drawImage(GameContent.CARD_BACKGROUND_IMAGE,WIDTH-PROMPT_WIDTH-100,(HEIGHT- CARD_HEIGHT)/2,CARD_WIDTH,CARD_HEIGHT);
             graphicsContext2D.setFont(Font.font(30));
             graphicsContext2D.setFill(Color.BLACK);
             graphicsContext2D.fillText(gameContent.getAllCards().size()+"",WIDTH-PROMPT_WIDTH-85,(HEIGHT- CARD_HEIGHT)/2+50);
 
-            //绘制玩家手牌
+            //绘制玩家手牌 Tirez la main du joueur
             List<Integer> cardList = gameContent.getPlayer().getCardList();
             for (int i = 0; i < cardList.size(); i++) {
                 Color color = Color.WHITE;
@@ -190,18 +192,18 @@ public class Main extends Application {
                     drawRect(graphicsContext2D,(START_X)+(CARD_WIDTH +CARD_INTERVAL)*i,HEIGHT- START_Y - CARD_HEIGHT,"face value:"+cardList.get(i)+"\n\nNumber of cattle:"+GameControl.getTaurenCount(cardList.get(i)),color, CARD_WIDTH, CARD_HEIGHT);
                 }        }
 
-            //绘制选牌按钮
+            //绘制选牌按钮 Tirage au sort bouton
             if(gameContent.getPlayer().getCurrentSelectCard() !=null){
                 drawRect(graphicsContext2D,(WIDTH-PROMPT_WIDTH-OFFER_CARD_CONFIRM_BUTTON_WIDTH)/2,OFFER_CARD_CONFIRM_BUTTON_START_Y,"  Confirm",Color.grayRgb(150),OFFER_CARD_CONFIRM_BUTTON_WIDTH,OFFER_CARD_CONFIRM_BUTTON_HEIGHT);
             }
 
-            //绘制电脑手牌
+            //绘制电脑手牌 Dessiner des mains d'ordinateur
             cardList = gameContent.getCpu().getCardList();
             for (int i = 0; i < cardList.size(); i++) {
                 graphicsContext2D.drawImage(GameContent.CARD_BACKGROUND_IMAGE,(START_X)+(CARD_WIDTH +CARD_INTERVAL)*i, START_Y, CARD_WIDTH, CARD_HEIGHT);
             }
 
-            //绘制面板上的牌
+            //绘制面板上的牌 Tirer les cartes au tableau
             List<List<Integer>> boardCards = gameContent.getBoardCards();
             for (int i = 0; i < boardCards.size(); i++) {
                 for (int j = 0; j < boardCards.get(i).size(); j++) {
@@ -214,13 +216,13 @@ public class Main extends Application {
                 }
             }
 
-            // 绘制实时得分
+            // 绘制实时得分 Tracer le score en temps réel
             graphicsContext2D.setFont(Font.font(15));
             graphicsContext2D.setFill(Color.BLACK);
             graphicsContext2D.fillText(gameContent.getCpu().getName()+" Points:  " + gameContent.getCpu().getScore(),WIDTH-PROMPT_WIDTH+20,START_X);
             graphicsContext2D.fillText(gameContent.getPlayer().getName()+" Points:  "+ gameContent.getPlayer().getScore(),WIDTH-PROMPT_WIDTH+20,HEIGHT-START_X);
 
-            //绘制上一张出的牌
+            //绘制上一张出的牌 Pioche la dernière carte jouée
             if(gameContent.getCpu().getCurrentOfferCard() != null){
                 if(gameContent.getAllCardImage().get(gameContent.getCpu().getCurrentOfferCard()) != null){
                     graphicsContext2D.drawImage(gameContent.getAllCardImage().get(gameContent.getCpu().getCurrentOfferCard()),WIDTH-PROMPT_WIDTH+20,START_X+CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT);
@@ -236,7 +238,7 @@ public class Main extends Application {
                 }
             }
 
-            //绘制游戏结果
+            //绘制游戏结果 Tracer les résultats du jeu
             if(isGameOver){
                 if(gameContent.getPlayer().getScore() > gameContent.getCpu().getScore()){
                     graphicsContext2D.fillText(gameContent.getCpu().getName()+" win",WIDTH-PROMPT_WIDTH+20,HEIGHT/2);

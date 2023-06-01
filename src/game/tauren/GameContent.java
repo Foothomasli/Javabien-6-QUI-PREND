@@ -1,7 +1,5 @@
- package game.tauren;
-
+package game.tauren;
 import javafx.scene.image.Image;
-
 import java.io.InputStream;
 import java.util.*;
 
