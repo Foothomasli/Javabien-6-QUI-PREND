@@ -47,7 +47,7 @@ import java.util.*;
             allCards.add(i);
             allCardImage.put(i,new Image(loadResources("image/cards/" +i+".png")));
         }
-        player = new Player("player");
+        player = new Player("Player");
         cpu = new Player("AI");
         //随机牌头
         Random random = new Random();
