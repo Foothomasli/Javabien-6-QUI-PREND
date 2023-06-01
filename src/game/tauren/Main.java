@@ -44,7 +44,7 @@ public class Main extends Application {
     public void start(Stage primaryStage){
 
         // Ajoutez le code pour lire la musique
-        String musicFile = "C:\\Users\\xzlle\\Desktop\\tauren\\src\\game\\tauren\\music\\Hearthstone (2014) - Main Title.mp3/";
+        String musicFile = "C:\\Users\\18971\\Desktop\\Hearthstone (2014) - Main Title.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
 
