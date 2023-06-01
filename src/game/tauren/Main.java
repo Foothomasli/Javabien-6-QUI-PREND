@@ -1,5 +1,4 @@
 package game.tauren;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
-
 import java.util.List;
 
 public class Main extends Application {
@@ -38,7 +36,6 @@ public class Main extends Application {
     public static final Canvas canvas = new Canvas(WIDTH, HEIGHT);
     public static boolean isGameOver = false;
     public static boolean isStartGame = false;
-
     public static MediaPlayer mediaPlayer;
     @Override
     public void start(Stage primaryStage){
@@ -74,8 +71,8 @@ public class Main extends Application {
                     }
                     return;
                 }
-                //选牌
-                //获取选择牌的位置
+                //选牌 Sélection de carte
+                //获取选择牌的位置 Obtenir la position de la carte sélectionnée
                 int index = -1;
                 if(gameContent.getPlayer().getCurrentSelectCard() != null){
                     for (int i = 0; i < gameContent.getPlayer().getCardList().size(); i++) {
@@ -91,7 +88,7 @@ public class Main extends Application {
                     index = (int)((x- START_X) / (CARD_WIDTH +CARD_INTERVAL));
                     GameControl.selectCard(index,gameContent);
                 }
-                //出牌
+                //出牌 Jouer aux cartes
                 if(y>= OFFER_CARD_CONFIRM_BUTTON_START_Y && y<= OFFER_CARD_CONFIRM_BUTTON_START_Y+OFFER_CARD_CONFIRM_BUTTON_HEIGHT && x >= (WIDTH-PROMPT_WIDTH-OFFER_CARD_CONFIRM_BUTTON_WIDTH)/2 && x<=(WIDTH-PROMPT_WIDTH-OFFER_CARD_CONFIRM_BUTTON_WIDTH)/2+OFFER_CARD_CONFIRM_BUTTON_WIDTH){
                     GameControl.offerCard(gameContent);
                     if(gameContent.getAllCards().size() <20 &&(gameContent.getCpu().getCardList().size() ==0 || gameContent.getPlayer().getCardList().size() ==0) ){
